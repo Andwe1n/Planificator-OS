@@ -1,0 +1,82 @@
+# FIX PENTRU CARACTERE STRANII IN CONSOLA
+
+## PROBLEMA
+Vedeai caractere ca: Γöé, Γöæ, Γöé in loc de casete frumoase
+
+## CAUZA
+Windows Console foloseste encoding diferit (CP850/CP437) in loc de UTF-8
+
+## SOLUTIE APLICATA
+Am inlocuit TOATE caracterele Unicode fancy cu ASCII simplu:
+
+### Inainte:
+╔════════════════════╗
+║  HEAP PROJECT      ║
+╚════════════════════╝
+
+### Acum:
+========================
+  HEAP PROJECT
+========================
+
+## FISIERE MODIFICATE
+
+✓ src/main.cpp - Meniul si header-ul principal
+✓ src/scheduler/scheduler.cpp - Tabelele de statistici  
+✓ include/utils/benchmark.hpp - Output benchmark
+✓ include/utils/visualizer.hpp - Mesaje validare
+✓ tests/heap_tests.hpp - Rezultate teste
+✓ examples/simple_examples.cpp - Header exemple
+
+## CUM SA COMPILEZI SI RULEZI ACUM
+
+### Metoda 1 - CEL MAI SIMPLU:
+1. Dublu-click pe compile.bat
+2. Asteapta "Compilation Successful!"
+3. Dublu-click pe RUN.bat SAU dublu-click pe heap_scheduler.exe
+
+### Metoda 2 - Din Command Prompt:
+compile.bat
+heap_scheduler.exe
+
+### Metoda 3 - Manual:
+g++ -std=c++17 -I./include src/main.cpp src/scheduler/scheduler.cpp -o heap_scheduler
+heap_scheduler.exe
+
+## VERIFICARE
+Daca vezi acum in consola:
+
+================================================
+     HEAP & OS SCHEDULER PROJECT
+     Binary Heaps & Process Scheduling
+================================================
+
+     HEAP & SCHEDULER DEMONSTRATION
+================================================
+  1. Binary Heap Demo
+  2. D-ary Heap Demo
+  3. Heap Comparison Demo
+  4. OS Scheduler Simulation
+  5. Performance Benchmark
+  6. Interactive Heap Builder
+  0. Exit
+================================================
+Choose an option:
+
+Atunci TOTUL FUNCTIONEAZA CORECT!
+
+## DACA TOT NU MERGE
+
+1. Verifica ca ai MinGW instalat:
+   g++ --version
+   Ar trebui sa vezi ceva ca: "g++ (MinGW...) 8.1.0" sau similar
+
+2. Daca nu ai MinGW:
+   - Download: https://sourceforge.net/projects/mingw-w64/
+   - Instaleaza
+   - Adauga la PATH: C:\MinGW\bin (sau unde l-ai instalat)
+
+3. Reincearca compilarea
+
+Data: Februarie 2026
+Status: TOATE PROBLEMELE DE ENCODING REZOLVATE

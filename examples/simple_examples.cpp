@@ -133,9 +133,9 @@ void example_dary_heap() {
 }
 
 int main() {
-    std::cout << "╔════════════════════════════════════════╗" << std::endl;
-    std::cout << "║     HEAP USAGE EXAMPLES                ║" << std::endl;
-    std::cout << "╚════════════════════════════════════════╝\n" << std::endl;
+    std::cout << "========================================" << std::endl;
+    std::cout << "     HEAP USAGE EXAMPLES                " << std::endl;
+    std::cout << "========================================\n" << std::endl;
     
     example_max_heap();
     example_min_heap();

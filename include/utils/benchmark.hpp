@@ -106,9 +106,9 @@ public:
      * @brief Run comprehensive benchmark suite
      */
     void run_comprehensive_benchmark() {
-        std::cout << "\n╔══════════════════════════════════════════════════════════════════════════╗" << std::endl;
-        std::cout << "║                    HEAP PERFORMANCE BENCHMARK                             ║" << std::endl;
-        std::cout << "╚══════════════════════════════════════════════════════════════════════════╝\n" << std::endl;
+        std::cout << "\n================================================================================" << std::endl;
+        std::cout << "                    HEAP PERFORMANCE BENCHMARK                                  " << std::endl;
+        std::cout << "================================================================================\n" << std::endl;
         
         std::vector<size_t> sizes = {100, 1000, 10000, 100000};
         

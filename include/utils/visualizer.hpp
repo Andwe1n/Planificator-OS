@@ -127,9 +127,9 @@ public:
         }
         
         if (is_valid) {
-            std::cout << "✓ Heap property is VALID" << std::endl;
+            std::cout << "[OK] Heap property is VALID" << std::endl;
         } else {
-            std::cout << "✗ Heap property is VIOLATED" << std::endl;
+            std::cout << "[ERROR] Heap property is VIOLATED" << std::endl;
         }
         std::cout << std::endl;
     }

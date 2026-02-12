@@ -22,9 +22,9 @@ public:
         
         if (test_func()) {
             tests_passed++;
-            std::cout << "✓ PASSED" << std::endl;
+            std::cout << "[PASSED]" << std::endl;
         } else {
-            std::cout << "✗ FAILED" << std::endl;
+            std::cout << "[FAILED]" << std::endl;
         }
     }
     
@@ -35,7 +35,7 @@ public:
         std::cout << "Tests failed: " << (tests_run - tests_passed) << std::endl;
         
         if (tests_passed == tests_run) {
-            std::cout << "✓ All tests passed!" << std::endl;
+            std::cout << "[SUCCESS] All tests passed!" << std::endl;
         }
     }
 };
@@ -151,9 +151,9 @@ bool test_large_heap() {
  * Main test runner
  */
 void run_all_tests() {
-    std::cout << "╔════════════════════════════════════════╗" << std::endl;
-    std::cout << "║     HEAP UNIT TESTS                    ║" << std::endl;
-    std::cout << "╚════════════════════════════════════════╝\n" << std::endl;
+    std::cout << "========================================" << std::endl;
+    std::cout << "     HEAP UNIT TESTS                    " << std::endl;
+    std::cout << "========================================\n" << std::endl;
     
     TestFramework framework;
     

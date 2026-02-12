@@ -1,4 +1,4 @@
-#include "scheduler/scheduler.hpp"
+#include "../include/scheduler/scheduler.hpp"
 #include <iostream>
 #include <iomanip>
 #include <algorithm>
@@ -181,44 +181,44 @@ void Scheduler::calculate_statistics() {
 }
 
 void Scheduler::display_statistics() const {
-    std::cout << "\n╔════════════════════════════════════════════╗" << std::endl;
-    std::cout << "║        SCHEDULER STATISTICS                ║" << std::endl;
-    std::cout << "╠════════════════════════════════════════════╣" << std::endl;
+    std::cout << "\n================================================" << std::endl;
+    std::cout << "        SCHEDULER STATISTICS                    " << std::endl;
+    std::cout << "================================================" << std::endl;
     
     std::cout << std::fixed << std::setprecision(2);
-    std::cout << "║ Total Time:              " << std::setw(10) << current_time << "     ║" << std::endl;
-    std::cout << "║ CPU Time:                " << std::setw(10) << total_cpu_time << "     ║" << std::endl;
-    std::cout << "║ Idle Time:               " << std::setw(10) << total_idle_time << "     ║" << std::endl;
-    std::cout << "║ Context Switches:        " << std::setw(10) << total_context_switches << "     ║" << std::endl;
-    std::cout << "║ Processes Completed:     " << std::setw(10) << total_processes_completed << "     ║" << std::endl;
-    std::cout << "║                                            ║" << std::endl;
-    std::cout << "║ CPU Utilization:         " << std::setw(9) << cpu_utilization << "%    ║" << std::endl;
-    std::cout << "║ Avg Waiting Time:        " << std::setw(10) << avg_waiting_time << "     ║" << std::endl;
-    std::cout << "║ Avg Turnaround Time:     " << std::setw(10) << avg_turnaround_time << "     ║" << std::endl;
-    std::cout << "║ Avg Response Time:       " << std::setw(10) << avg_response_time << "     ║" << std::endl;
-    std::cout << "╚════════════════════════════════════════════╝" << std::endl;
+    std::cout << " Total Time:              " << std::setw(10) << current_time << std::endl;
+    std::cout << " CPU Time:                " << std::setw(10) << total_cpu_time << std::endl;
+    std::cout << " Idle Time:               " << std::setw(10) << total_idle_time << std::endl;
+    std::cout << " Context Switches:        " << std::setw(10) << total_context_switches << std::endl;
+    std::cout << " Processes Completed:     " << std::setw(10) << total_processes_completed << std::endl;
+    std::cout << "                                                " << std::endl;
+    std::cout << " CPU Utilization:         " << std::setw(9) << cpu_utilization << "%" << std::endl;
+    std::cout << " Avg Waiting Time:        " << std::setw(10) << avg_waiting_time << std::endl;
+    std::cout << " Avg Turnaround Time:     " << std::setw(10) << avg_turnaround_time << std::endl;
+    std::cout << " Avg Response Time:       " << std::setw(10) << avg_response_time << std::endl;
+    std::cout << "================================================" << std::endl;
     
     // Display individual process statistics
-    std::cout << "\n╔═══════════════════════════════════════════════════════════════════════════╗" << std::endl;
-    std::cout << "║                           PROCESS DETAILS                                  ║" << std::endl;
-    std::cout << "╠═══╤═════════╤════════╤═══════╤═══════╤══════════╤═══════════╤═════════════╣" << std::endl;
-    std::cout << "║PID│Priority │Burst   │Arrival│Start  │Finish    │Waiting    │Turnaround   ║" << std::endl;
-    std::cout << "╠═══╪═════════╪════════╪═══════╪═══════╪══════════╪═══════════╪═════════════╣" << std::endl;
+    std::cout << "\n================================================================================" << std::endl;
+    std::cout << "                           PROCESS DETAILS                                      " << std::endl;
+    std::cout << "================================================================================" << std::endl;
+    std::cout << "PID | Priority | Burst  | Arrival| Start | Finish   | Waiting   | Turnaround   " << std::endl;
+    std::cout << "--------------------------------------------------------------------------------" << std::endl;
     
     for (const auto& proc : processes) {
         if (proc.state == ProcessState::TERMINATED) {
-            std::cout << "║" << std::setw(3) << proc.pid 
-                      << "│" << std::setw(9) << proc.base_priority
-                      << "│" << std::setw(8) << proc.burst_time
-                      << "│" << std::setw(7) << proc.arrival_time
-                      << "│" << std::setw(7) << proc.start_time
-                      << "│" << std::setw(10) << proc.finish_time
-                      << "│" << std::setw(11) << proc.waiting_time
-                      << "│" << std::setw(13) << proc.turnaround_time
-                      << "║" << std::endl;
+            std::cout << std::setw(3) << proc.pid 
+                      << " | " << std::setw(9) << proc.base_priority
+                      << "| " << std::setw(8) << proc.burst_time
+                      << "| " << std::setw(7) << proc.arrival_time
+                      << "| " << std::setw(7) << proc.start_time
+                      << "| " << std::setw(10) << proc.finish_time
+                      << "| " << std::setw(11) << proc.waiting_time
+                      << "| " << std::setw(13) << proc.turnaround_time
+                      << std::endl;
         }
     }
-    std::cout << "╚═══╧═════════╧════════╧═══════╧═══════╧══════════╧═══════════╧═════════════╝" << std::endl;
+    std::cout << "================================================================================" << std::endl;
 }
 
 void Scheduler::display_state() const {
