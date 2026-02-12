@@ -9,9 +9,9 @@
 #include "utils/visualizer.hpp"
 
 void print_menu() {
-    std::cout << "\n╔════════════════════════════════════════════════╗" << std::endl;
+    std::cout << "╔════════════════════════════════════════════════╗" << std::endl;
     std::cout << "║     HEAP & SCHEDULER DEMONSTRATION             ║" << std::endl;
-    std::cout << "╠════════════════════════════════════════════════╣" << std::endl;
+    std::cout << "╠══════════════════════════════════════════════==╣" << std::endl;
     std::cout << "║  1. Binary Heap Demo                           ║" << std::endl;
     std::cout << "║  2. D-ary Heap Demo                            ║" << std::endl;
     std::cout << "║  3. Heap Comparison Demo                       ║" << std::endl;

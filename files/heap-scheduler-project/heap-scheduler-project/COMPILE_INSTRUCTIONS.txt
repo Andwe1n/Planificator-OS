@@ -1,0 +1,206 @@
+# INSTRUCȚIUNI DE COMPILARE - Heap Scheduler Project
+
+## PROBLEMA ÎNTÂLNITĂ
+Eroare: "fatal error: heap/binary_heap.hpp: No such file or directory"
+
+## CAUZA
+Include-urile în main.cpp nu aveau path-urile relative corecte.
+
+## SOLUȚIE - 3 METODE DE COMPILARE
+
+════════════════════════════════════════════════════════════════
+METODA 1: Folosind compile.bat (CEL MAI SIMPLU - WINDOWS)
+════════════════════════════════════════════════════════════════
+
+1. Deschide Command Prompt în directorul proiectului
+2. Rulează:
+   compile.bat
+
+3. Dacă merge, vei vedea:
+   ✓ Compilation Successful!
+   
+4. Rulează programul:
+   heap_scheduler.exe
+
+
+════════════════════════════════════════════════════════════════
+METODA 2: Compilare Manuală Directă (WINDOWS/LINUX/MAC)
+════════════════════════════════════════════════════════════════
+
+WINDOWS (cu MinGW/g++):
+-----------------------
+g++ -std=c++17 -I./include src/main.cpp src/scheduler/scheduler.cpp -o heap_scheduler.exe
+
+
+LINUX/MAC:
+----------
+g++ -std=c++17 -I./include src/main.cpp src/scheduler/scheduler.cpp -o heap_scheduler
+
+
+EXPLICAȚIE COMENZI:
+- `-std=c++17` : Folosește standardul C++17
+- `-I./include` : Adaugă directorul include la căile de căutare
+- `src/main.cpp src/scheduler/scheduler.cpp` : Fișierele source
+- `-o heap_scheduler` : Numele executabilului
+
+
+════════════════════════════════════════════════════════════════
+METODA 3: Folosind CMake (PROFESIONAL)
+════════════════════════════════════════════════════════════════
+
+WINDOWS:
+--------
+mkdir build
+cd build
+cmake ..
+cmake --build .
+.\Debug\heap_scheduler.exe
+
+
+LINUX/MAC:
+----------
+mkdir build
+cd build
+cmake ..
+make
+./heap_scheduler
+
+
+════════════════════════════════════════════════════════════════
+VERIFICARE CORECTITUDINE
+════════════════════════════════════════════════════════════════
+
+Structura corectă a directoriilor:
+
+heap-scheduler-project/
+├── include/
+│   ├── heap/
+│   │   ├── heap_base.hpp
+│   │   ├── binary_heap.hpp
+│   │   └── dary_heap.hpp
+│   ├── scheduler/
+│   │   ├── process.hpp
+│   │   └── scheduler.hpp
+│   └── utils/
+│       ├── benchmark.hpp
+│       └── visualizer.hpp
+├── src/
+│   ├── main.cpp              ← Include-urile acum au "../include/"
+│   └── scheduler/
+│       └── scheduler.cpp     ← Include-urile acum au "../include/"
+├── compile.bat               ← Script nou creat
+└── CMakeLists.txt
+
+
+════════════════════════════════════════════════════════════════
+TROUBLESHOOTING
+════════════════════════════════════════════════════════════════
+
+PROBLEMA: "g++ is not recognized as an internal or external command"
+SOLUȚIE: Instalează MinGW sau folosește MSVC
+
+WINDOWS - Instalare MinGW:
+1. Download de la: https://sourceforge.net/projects/mingw/
+2. Instalează și adaugă la PATH (de ex: C:\MinGW\bin)
+3. Verifică: g++ --version
+
+
+PROBLEMA: "No such file or directory" pentru headers
+SOLUȚIE: Asigură-te că ești în directorul root al proiectului
+         (directorul care conține /include și /src)
+
+
+PROBLEMA: Erori de linking
+SOLUȚIE: Asigură-te că incluzi scheduler.cpp:
+         g++ ... src/main.cpp src/scheduler/scheduler.cpp ...
+
+
+════════════════════════════════════════════════════════════════
+COMPILARE EXEMPLE ADIȚIONALE
+════════════════════════════════════════════════════════════════
+
+Pentru simple_examples.cpp:
+g++ -std=c++17 -I./include examples/simple_examples.cpp -o simple_examples
+
+Pentru teste (când le creezi):
+g++ -std=c++17 -I./include tests/test_runner.cpp -o test_runner
+
+
+════════════════════════════════════════════════════════════════
+VERSIUNI ALTERNATIVE - DACĂ FOLOSEȘTI VISUAL STUDIO
+════════════════════════════════════════════════════════════════
+
+1. Deschide Visual Studio
+2. Create New Project → Console App (C++)
+3. Adaugă toate fișierele .cpp la project
+4. Project Properties → C/C++ → General → Additional Include Directories
+   → Adaugă: $(ProjectDir)\include
+5. Build → Build Solution (F7)
+6. Run (F5)
+
+
+════════════════════════════════════════════════════════════════
+DACĂ TOTUL EȘUEAZĂ - COMPILARE FIȘIER UNIC
+════════════════════════════════════════════════════════════════
+
+Poți să combini tot codul într-un singur fișier:
+
+1. Creează "all_in_one.cpp"
+2. Copiază conținutul tuturor .hpp în ordine:
+   - heap_base.hpp
+   - binary_heap.hpp
+   - dary_heap.hpp
+   - process.hpp
+   - scheduler.hpp (doar declarația)
+   - benchmark.hpp
+   - visualizer.hpp
+3. Apoi copiază scheduler.cpp (implementarea)
+4. Apoi main.cpp
+5. Compilează:
+   g++ -std=c++17 all_in_one.cpp -o heap_scheduler
+
+
+════════════════════════════════════════════════════════════════
+CONFIRMARE SUCCES
+════════════════════════════════════════════════════════════════
+
+Când compilarea reușește, ar trebui să vezi:
+
+Nici o eroare!
+Fișierul executabil creat: heap_scheduler.exe (Windows) sau heap_scheduler (Linux/Mac)
+
+Rulând programul:
+╔════════════════════════════════════════════════╗
+║     HEAP & OS SCHEDULER PROJECT                ║
+║     Binary Heaps & Process Scheduling          ║
+╚════════════════════════════════════════════════╝
+
+Dacă vezi meniul, totul funcționează corect! ✓
+
+
+════════════════════════════════════════════════════════════════
+AJUTOR SUPLIMENTAR
+════════════════════════════════════════════════════════════════
+
+Dacă probleme persistă, verifică:
+1. Versiunea compiler: g++ --version (trebuie >= 7.0 pentru C++17)
+2. Toate fișierele sunt în locurile corecte
+3. Nu există erori de sintaxă în fișiere
+4. Ai permisiuni de scriere în director
+
+Pentru debugging detaliat, adaugă flag-ul -v:
+g++ -v -std=c++17 -I./include src/main.cpp src/scheduler/scheduler.cpp -o heap_scheduler
+
+Acest flag va arăta exact ce face compilatorul.
+
+
+════════════════════════════════════════════════════════════════
+ULTIMELE MODIFICĂRI FĂCUTE
+════════════════════════════════════════════════════════════════
+
+✓ Corectat include-urile în src/main.cpp (adăugat ../ prefix)
+✓ Corectat include-urile în src/scheduler/scheduler.cpp
+✓ Creat compile.bat pentru compilare simplă pe Windows
+✓ Creat acest ghid detaliat
+
+Data: Februarie 2026
